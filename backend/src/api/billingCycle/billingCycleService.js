@@ -6,4 +6,15 @@ BillingCycle.updateOptions({
     runValidators: true //Força as validações definidas no ODM tamém para update (por default são aplicadas somente no insert - post)
 })
 
+BillingCycle.route('count', (req, res, next) => {
+    BillingCycle.count((error, value) => {
+        if(error) {
+            res.status(500).json({errors: [error]})
+        } else {
+            res.json({value})
+        }
+    })
+})
+
+
 module.exports = BillingCycle
